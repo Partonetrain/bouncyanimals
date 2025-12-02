@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "bouncyanimals",
+	"version": "${version}",
+	"name": "bouncyanimals",
+	"description": "Attempts to make animals jump like they did in beta",
+	"authors": [
+		"Partonetrain"
+	],
+	"contact": {
+		"sources": "https://github.com/partonetrain/bouncyanimals"
+	},
+	"license": "MIT",
+	"icon": "assets/bouncyanimals/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"info.partonetrain.bouncyanimals.Bouncyanimals"
+		],
+		"client": [
+			"info.partonetrain.bouncyanimals.BouncyanimalsClient"
+		]
+	},
+	"mixins": [
+		"bouncyanimals.mixins.json",
+		{
+			"config": "bouncyanimals.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.1",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
