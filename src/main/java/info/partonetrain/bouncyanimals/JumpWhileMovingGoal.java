@@ -1,25 +1,19 @@
 package info.partonetrain.bouncyanimals;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.goat.Goat;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class JumpWhileMovingGoal extends Goal {
-    private final Animal owner;
+    private final Mob owner;
     private final LevelReader levelReader;
 
-    public JumpWhileMovingGoal(Animal owner){
+    public JumpWhileMovingGoal(Mob owner){
         this.owner = owner;
         levelReader = owner.level();
     }

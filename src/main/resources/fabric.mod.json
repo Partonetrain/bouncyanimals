@@ -22,14 +22,10 @@
 		]
 	},
 	"mixins": [
-		"bouncyanimals.mixins.json",
-		{
-			"config": "bouncyanimals.client.mixins.json",
-			"environment": "client"
-		}
+		"bouncyanimals.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.1",
+		"fabricloader": "*",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"

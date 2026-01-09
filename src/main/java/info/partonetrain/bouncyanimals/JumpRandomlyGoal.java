@@ -3,6 +3,7 @@ package info.partonetrain.bouncyanimals;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.LevelReader;
@@ -10,10 +11,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class JumpRandomlyGoal extends Goal {
-    private final Animal owner;
+    private final Mob owner;
     private final LevelReader levelReader;
 
-    public JumpRandomlyGoal(Animal owner){
+    public JumpRandomlyGoal(Mob owner){
         this.owner = owner;
         levelReader = owner.level();
     }

@@ -2,13 +2,13 @@ package info.partonetrain.bouncyanimals;
 
 import info.partonetrain.bouncyanimals.mixin.MobAccessor;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.fabricmc.api.ModInitializer;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
-import net.minecraft.world.entity.animal.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class Bouncyanimals implements ModInitializer {
 		config = AutoConfig.getConfigHolder(BouncyanimalsConfig.class).getConfig();
 
 		ServerEntityEvents.ENTITY_LOAD.register(((entity, serverLevel) -> {
-			if(entity instanceof Animal animal) {
+			if(entity instanceof Mob animal) {
 				if(config.jumpWhileMovingChance > 0){
 					if(Arrays.asList(config.jumpWhileMovingAnimals).contains(BuiltInRegistries.ENTITY_TYPE.getKey(animal.getType()).toString())){
 						addJumpWhileMovingGoal(animal);
@@ -51,18 +51,18 @@ public class Bouncyanimals implements ModInitializer {
 			}
 			else {
 				if(Arrays.asList(config.jumpWhileMovingAnimals).contains(entity.getType().toString())){
-					LOGGER.info(entity.getName().toString() + " is not an Animal");
+					LOGGER.info(entity.getName().toString() + " is not a Mob");
 				}
 			}
 		}));
 	}
 
-	public void addJumpWhileMovingGoal(Animal animal){
+	public void addJumpWhileMovingGoal(Mob animal){
 		GoalSelector mobGoalSelector = ((MobAccessor) animal).bouncyanimals$getMobGoalSelector();
 		mobGoalSelector.addGoal(config.jumpWhileMovingPriority, new JumpWhileMovingGoal(animal));
 	}
 
-	public void addJumpRandomlyGoal(Animal animal){
+	public void addJumpRandomlyGoal(Mob animal){
 		GoalSelector mobGoalSelector = ((MobAccessor) animal).bouncyanimals$getMobGoalSelector();
 		mobGoalSelector.addGoal(config.jumpRandomlyPriority, new JumpRandomlyGoal(animal));
 	}
